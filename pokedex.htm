@@ -1,0 +1,321 @@
+<html lang="pt-br">
+	<head>
+		<title>Pokedex v1.0</title>
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+		<style>
+			body {
+				background: #454d55;
+				justify-content: center;
+				font-family: 'Press Start 2P', cursive;
+			}
+			.pokedex{
+				margin: 0 auto;
+				display: flex;
+				width: 800px;
+			}
+			.panel_left{
+				margin: 0;
+				padding: 0;
+				border-radius: 15px 15px 0px 15px;
+				height: 600px;
+				width: 400px;
+				background: linear-gradient(45deg, #FA3037, #EC3037,#FF2630);
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+				overflow: hidden;
+			}
+			.panel_header{
+				width: 100%;
+				flex-direction: row;
+				display: flex;
+			}
+
+			#globe_one{
+				margin-top: 20px;
+				margin-left: 20px;
+				background: linear-gradient(rgb(68 181 255) 0%, rgb(38 158 222) 50%);
+				height: 80px;
+				width: 80px;
+				border-radius: 100px;
+				border: 10px solid #DCD9DF;
+				box-shadow: 3px 4px 6px 0px #2a292957;
+			}
+			#mini_globe_one, #mini_globe_two, #mini_globe_three{
+				margin-top: 20px;
+				margin-left: 10px;
+				height: 30px;
+				width: 30px;
+				border-radius: 100px;
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+			}
+			#mini_globe_one{
+				background: linear-gradient(#e02929 0%, #d31919 10%, #bf1b1b 50%, #842626 100%);
+			}			
+			#mini_globe_two{
+				background: linear-gradient(#f6f16e 0%, #fffe7f 10%, #f1ed1a 50%, #dcda0d 100%);
+			}
+			#mini_globe_three{
+				background: linear-gradient(#65ff93 0%, #9fff62 10%, #86ff56 50%, #23f100 100%);
+			}
+
+			.display_poke{
+				margin: 0 auto;
+				width: 300px;
+				height: 270px;
+				background: linear-gradient(#fdfffe 0%, #f1f1f1 10%, #dedede 50%, #b6b6b6 100%);
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+				border-radius: 8px 8px 0px 35px;
+				border: 1px solid #00000087;
+				margin-top: -44px;
+			}
+			.header_display{
+				margin: 0 auto; 
+				display: flex; 
+				justify-content: center;
+			}
+			#min_globe{
+				margin-top: 5px;
+				margin-left: 8px;
+				height: 10px;
+				width: 10px;
+				border-radius: 100px;
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+				background: linear-gradient(#e02929 0%, #e02a2a 10%, #df2323 50%, #c02323 100%);
+			}
+			#screen_poke{
+				position: relative;
+				margin: 0 auto;
+				margin-top: 10px;
+				width: 250px;
+				height: 180px;
+				background: #ddf2ff;
+				background-size: cover;
+				background-attachment: fixed;
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+				border-radius: 5px;
+				border: 1px solid #00000087;
+				overflow: hidden;
+				display: flex;
+			}
+			#btnA{
+				margin-top: 20px;
+				margin-left: 20px;
+				background: linear-gradient(rgb(12 154 248) 0%, rgb(25 131 188) 50%);
+				height: 60px;
+				width: 60px;
+				border-radius: 100px;
+				box-shadow: 3px 4px 6px 0px #2a292957;
+			}
+
+			.panel_right{
+				margin: 0;
+				margin-top: 100px;
+				padding: 0;
+				border-radius: 0px 15px 15px 0px;
+				height: 500px;
+				width: 400px;
+				background: linear-gradient(336deg, #FA3037, #EC3037,#FF2630);
+				box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 24%);
+				overflow: hidden;
+			}
+			.list_poke{
+				margin: 0 auto;
+				margin-top: 20px;
+				width: 320px;
+				height: 400px;
+				background-color: #979980;
+				border: 4px solid #7C7D6B;
+				border-radius: 4px;
+				overflow-x: auto;
+			}
+
+			.pokemon{
+				margin: 0;
+				font-family: 'Press Start 2P', cursive;
+				padding: 10px;
+			}
+			.pokemon:hover{
+				background-color: #000;
+				color: #979980;
+				cursor: pointer;
+			}
+
+			.stats{
+				position: absolute; 
+				bottom: -6px; 
+				z-index: 1; 
+				color: #fff;
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+				padding: 5px;
+				text-shadow: 1px 1px 1px black;
+			}
+
+			.wave {
+				animation: wave 3s linear;
+				animation-iteration-count:infinite;
+			}
+			#wave2 {
+				animation-duration:5s;
+				animation-direction: reverse;
+				opacity: .6
+			}
+			#wave3 {
+				animation-duration: 7s;
+				opacity:.3;
+			}
+			
+			@keyframes wave {
+			to {transform: translateX(-100%);}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pokedex">
+			<div class="panel_left">
+				<div class="panel_header">
+					<div id="globe_one"></div>
+					<div id="mini_globe_one"></div>
+					<div id="mini_globe_two"></div>
+					<div id="mini_globe_three"></div>
+				</div>
+				<svg style="width: 100%;margin-top: -50px">
+					<polyline points="0,75 150,75 170,28 500,28" style="fill: none; stroke: #410D01; stroke-width: 7" />
+				</svg>
+				<div class="display_poke">
+					<div class="header_display">
+						<div id="min_globe"></div>
+						<div id="min_globe"></div>
+					</div>
+					<div id="screen_poke"></div>
+				</div>
+				<div id="btnA"></div>
+			</div>
+
+			<div class="panel_right">
+				<div class="list_poke">
+					<ul id="list_poke"></ul>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script>
+			let color = [{"name":"normal","eff":"11111½10½111111111","color":"A8A878"},{"name":"fighting","eff":"21½½12½021111½212½","color":"C03028"},{"name":"flying","eff":"12111½21½112½11111","color":"A890F0"},{"name":"poison","eff":"111½½½1½0112111112","color":"A040A0"},{"name":"ground","eff":"110212½1221½211111","color":"E0C068"},{"name":"rock","eff":"1½21½121½211112111","color":"B8A038"},{"name":"bug","eff":"1½½½111½½½1212112½","color":"A8B820"},{"name":"ghost","eff":"0111111211111211½1","color":"705898"},{"name":"steel","eff":"11111211½½½1½12112","color":"B8B8D0"},{"name":"fire","eff":"11111½212½½2112½11","color":"F08030"},{"name":"water","eff":"1111221112½½111½11","color":"6890F0"},{"name":"grass","eff":"11½½22½1½½2½111½11","color":"78C850"},{"name":"electric","eff":"11210111112½½11½11","color":"F8D030"},{"name":"psychic","eff":"12121111½1111½1101","color":"F85888"},{"name":"ice","eff":"11212111½½½211½211","color":"98D8D8"},{"name":"dragon","eff":"11111111½111111210","color":"7038F8"},{"name":"dark","eff":"1½11111211111211½½","color":"705848"},{"name":"fairy","eff":"121½1111½½11111221","color":"EE99AC"}];
+			let pokemons = [];
+			axios.get('https://api-pokemons.herokuapp.com/pokemons')
+			.then(list => { console.log(list);
+				list.data.forEach((e, i) => {
+					document.getElementsByClassName('list_poke')[0].innerHTML += `<p onclick="setPokemon(${i})" class="pokemon">${e.id}-${e.name}</p>`;
+					pokemons.push(e);
+				});;
+			})
+			.catch(()=> alert('Falhou ao carregar API'));
+
+			function setPokemon(i){
+				// document.getElementById('screen_poke').style.background = `rgba(${pokemons[i].color}, .4)`;
+				let types_pokemon = pokemons[i].types;
+				let evolution_pokemon = "";
+
+				pokemons[i].evolution.forEach(e => { 
+					evolution_pokemon += `<div style="float: left; margin-rigth: 8px;text-align: center; padding: 2px">
+												<img src="${e.img}" width="50px"/><br/>
+												<span style="font-family: Arial; font-size: 10px; text-align: center">${e.name}</span>
+											</div>`;
+				});
+
+				document.getElementById('screen_poke').innerHTML = `
+					<img src="${pokemons[i].img}" height="100px" width="100px" />
+					<div style="position: relative; z-index: 999">
+						<div style="width: 200px">
+							<marquee style="color: #ffffff;text-shadow: 1px 1px 3px #000;padding-bottom: 3px;" behavior="alternate" scrollamount="1"> ${pokemons[i].name}</marquee>
+							${pokemons[i].types.split(',')[1] ? 
+							`<span style="font-family: Arial; font-size: 10px; color: #fff; padding: 2px 9px 2px 8px; border-radius: 4px; background: #${color[color.findIndex( i => i.name === types_pokemon.split(',')[0])].color}">${pokemons[i].types.split(',')[0]}</span> <span style="font-family: Arial; font-size: 10px; color: #fff; padding: 2px 9px 2px 8px; border-radius: 4px; background: #${color[color.findIndex( i => i.name === types_pokemon.split(',')[1])].color}">${pokemons[i].types.split(',')[1]}</span>` : 
+							`<span style="font-family: Arial; font-size: 10px; color: #fff; padding: 2px 9px 2px 8px; border-radius: 4px; background: #${color[color.findIndex( i => i.name === types_pokemon)].color}">${pokemons[i].types}</span>`}
+						</div>
+						<div style="width: 200px;display: flex; margin-top:4px">
+							<span style="font-size: 6px; background: linear-gradient(271deg, ${pokemons[i].color}, transparent); color: #fff; writing-mode: vertical-lr; text-orientation: upright; text-align: center; ">EVOLUÇÕES</span>
+							<marquee scrollamount="3">
+								${evolution_pokemon}
+							</marquee>
+						</div>
+					</div>
+					<div class="stats">
+						<table style="margin-top: 4px" align="center" celspacing="4" width="100%">
+							<tr>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>HP</span> <span style="text-align: right;">${pokemons[i].stats[5].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[5].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>S. DEF</span> <span style="text-align: right;">${pokemons[i].stats[1].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[1].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>S. ATK</span> <span style="text-align: right;">${pokemons[i].stats[2].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[2].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>DEF</span> <span style="text-align: right;">${pokemons[i].stats[3].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[3].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>ATK</span> <span style="text-align: right;">${pokemons[i].stats[4].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[4].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+								<td>
+									<div style="font-size: 8px; color: #edf7ff;margin: 0; margin-bottom: 4px; display: flex;justify-content: space-between;width: 74px;">
+										<span>SPEED</span> <span style="text-align: right;">${pokemons[i].stats[0].base_stat}</span>
+									</div>
+									<div style="background: #00000042; width: 73px;height: 10px;margin: 0; border-radius: 4px; border: 1px solid #edf7ff; overflow: hidden; position: relative;">
+										<p style="background: #edf7ff; width: ${pokemons[i].stats[5].base_stat/4}%;height: 10px;margin: 0; position: absolute;"></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<style>.wave{ fill: ${pokemons[i].color} } </style>
+					<svg style="position: absolute; bottom: -108px; z-index: 0;" viewBox="0 0 120 98">
+						<defs> 
+							<filter id="goo">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="${pokemons[i].color}" />
+							<feColorMatrix in="${pokemons[i].color}" mode="matrix" values="
+								1 0 0 0 0  
+								0 1 0 0 0  
+								0 0 1 0 0  
+								0 0 0 13 -9" result="goo" />
+							<xfeBlend in="SourceGraphic" in2="goo" />
+							</filter>
+							<path id="wave" d="M 0,10 C 30,10 30,15 60,15 90,15 90,10 120,10 150,10 150,15 180,15 210,15 210,10 240,10 v 98 h -240 z" />
+						</defs> 
+
+						<use id="wave3" class="wave" xlink:href="#wave" x="0" y="-2" ></use> 
+						<use id="wave2" class="wave" xlink:href="#wave" x="0" y="0" ></use>
+					</svg>
+				`;
+				console.log(pokemons[i]);
+			}
+		</script>
+	</body>
+</html>
